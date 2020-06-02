@@ -1,4 +1,4 @@
-# vue-multitenants
+# data-api
 
 ## Project setup
 ```
