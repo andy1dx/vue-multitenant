@@ -1,46 +1,22 @@
 <template>
   <v-form v-model="valid">
-    <v-container>
-      <v-row>
-        <v-col
-          cols="12"
-          md="4"
-        >
-          <v-text-field
-            v-model="firstname"
-            :rules="nameRules"
+     <v-text-field
+            v-model="username"
+            :rules="usernameValidation"
             :counter="10"
-            label="First name"
+            label="Username"
             required
           ></v-text-field>
-        </v-col>
-
-        <v-col
-          cols="12"
-          md="4"
-        >
+       
           <v-text-field
-            v-model="lastname"
-            :rules="nameRules"
+            v-model="password"
+            :rules="passwordValidation"
             :counter="10"
-            label="Last name"
+            label="password"
             required
           ></v-text-field>
-        </v-col>
 
-        <v-col
-          cols="12"
-          md="4"
-        >
-          <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="E-mail"
-            required
-          ></v-text-field>
-        </v-col>
-      </v-row>
-    </v-container>
+          <v-btn block color="primary" :disabled="!valid" @click="submit">Login</v-btn>
   </v-form>
 </template>
 
@@ -49,17 +25,21 @@
     name: 'home-login',
     data: () => ({
       valid: false,
-      firstname: '',
-      lastname: '',
-      nameRules: [
-        v => !!v || 'Name is required',
-        v => v.length <= 10 || 'Name must be less than 10 characters',
+      password: '',
+      passwordValidation: [
+        v => !!v || 'Password is required',
+        v => v.length <= 10 || 'Password must be less than 10 characters',
       ],
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
+      username: '',
+      usernameValidation: [
+        v => !!v || 'Username is required',
+        v => /.+@.+/.test(v) || 'Username must be valid',
       ],
     }),
+    methods: {
+      submit () {
+        alert('login !');
+      }
+    }
   }
 </script>
