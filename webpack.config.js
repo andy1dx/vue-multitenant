@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
   entry: './src/main.js',
@@ -36,6 +37,14 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        rules: [
+          {
+            test: /\.vue$/,
+            loader: "vue-loader"
+          }
+        ]
       }
     ]
   },
@@ -53,6 +62,7 @@ module.exports = {
   performance: {
     hints: false
   },
+  plugins: [new VueLoaderPlugin()],
   devtool: '#eval-source-map'
 }
 
@@ -65,12 +75,12 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   sourceMap: true,
+    //   compress: {
+    //     warnings: false
+    //   }
+    // }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
